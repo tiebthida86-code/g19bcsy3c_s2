@@ -3,7 +3,7 @@
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { LoadingModal, MessageModal, CloseModal } from "@/functions/swal";
-import { apiGoogleOAuthExchangeToken } from "@/functions/api/google-oauth";
+import { apiGoogleOAuthExchangeToken } from "@/functions/api/oauth";
 import { useUserStore } from "@/stores/user";
 import { useRouter } from 'vue-router';
 
@@ -22,13 +22,15 @@ onMounted(async () => {
     }
 
     const token = route.query.token;
+    console.log(token);
+    
     const response = await apiGoogleOAuthExchangeToken(token);
     userStore.setState(response.data.user);
     userStore.setSanctumToken(response.data.token);
     CloseModal();
     return router.replace({ name: 'dashboard' });
   } catch (e) {
-    return MessageModal({ icon: "error", title: "Error", text: "Google authentication failed. Please try again." }, () => {
+    return MessageModal({ icon: "error", title: "Error", text: "Google authentication failed to exchange token. Please try again." }, () => {
       return router.replace({ name: 'auth.signin' });
     });
   }

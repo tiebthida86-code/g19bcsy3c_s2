@@ -62,7 +62,7 @@
           </form>
           <div class="social-auth-links text-center mt-3 mb-3">
             <p>- OR -</p>
-            <button @click="googleSignUp()" class="btn btn-block btn-danger">
+            <button @click="googleSignUp('Google')" class="btn btn-block btn-danger">
               <i class="fab fa-google mr-2"></i> Sign up with Google
             </button>
           </div>
@@ -88,7 +88,7 @@
 import { reactive, ref } from "vue";
 import { apiSignUp, apiSendVerificationEmail } from "@/functions/api/auth";
 import { LoadingModal, MessageModal, CloseModal } from "@/functions/swal";
-import { apiGoogleOAuthRedirect } from "@/functions/api/google-oauth";
+import { apiGoogleOAuthRedirect } from "@/functions/api/oauth";
 
 const user = reactive({
   name: "",

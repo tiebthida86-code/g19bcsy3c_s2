@@ -41,9 +41,10 @@
           </form>
           <div class="social-auth-links text-center mt-3 mb-3">
             <p>- OR -</p>
-            <button @click="googleSignIn()" class="btn btn-block btn-danger">
+            <button @click="googleSignIn('Google')" class="btn btn-block btn-danger">
               <i class="fab fa-google mr-2"></i> Sign in with Google
             </button>
+          
           </div>
           <p class="mb-1">
             <router-link :to="{ name: 'auth.signup' }" class="text-center">Register a new membership</router-link>
